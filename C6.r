@@ -72,7 +72,7 @@ for (i in states){
     statesLength[i] <- nchar(i)    
 }
 
-# but better is to verctorize
+# but better is to vectorize
 statesLength <- nchar(states)
 names(statesLength) <- states
 

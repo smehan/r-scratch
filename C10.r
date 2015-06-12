@@ -1,6 +1,6 @@
-***********************************************************
-    C10 Class: Linear Models
-***********************************************************
+###########################################################
+###    C10 Class: Linear Models
+###########################################################
 
 # Fitting simple linear models
 
@@ -307,3 +307,36 @@ cvResults$AIC <- cvAIC$AIC
 cvResults$BIC <- cvBIC$BIC
 
 cvResults
+
+# Estimate uncertainty with Bootstrap when there is no analytic solution
+# calculate CI for batting averages
+
+library(plyr)
+#subset the data
+baseball <- baseball[baseball$year >= 1990, ]
+
+bat.avg <- function(data, indices=1:NROW(data), hits="h", at.bats="ab"){
+    sum(data[indices, hits], na.rm=TRUE) /
+        sum(data[indices, at.bats], na.rm=TRUE)
+}
+
+bat.avg(baseball)
+
+# now we need uncertainty, so load bootstrap
+library(boot)
+avgBoot <- boot(data=baseball, statistic=bat.avg, R=1200, stype = "i")
+avgBoot # this gives a standard error for the distribution
+# now use bootstrap to make the CI
+boot.ci(avgBoot, conf=.95, type="norm")
+# let's build up a plot of these averages with the CI as vlines
+ggplot() + geom_histogram(aes(x=avgBoot$t), fill="grey", color="grey") +
+    geom_vline(xintercept=avgBoot$t0 + c(-1,1)*2*sqrt(var(avgBoot$t)), linetype=2)
+
+# choose variables in a model with stepwise selection
+# use housing data and step function in R
+# build a simple model
+nullModel <- lm(ValuePerSqFt ~ 1, data=housing)
+fullModel <- lm(ValuePerSqFt ~ Units + SqFt*Boro + Boro*Class, housing)
+houseStep <- step(nullModel,
+                  scope=list(lower=nullModel, upper=fullModel),
+                  direction="both")

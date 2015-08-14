@@ -1,3 +1,12 @@
+###########################################################
+### XML class to Xpath and compute on nodes for an XML tree.
+### Includes application of a function to handle multiple and missing
+### nodes in the tree and assemble a final data.frame from the results.
+### http://www.zvon.org/xxl/XPathTutorial/Output/example1.html
+### for good tutorial examples on xpath operators
+###########################################################
+library(XML)
+
 # We can either take the xml inline or from a file
 doc <- xmlParse( '<?xml version="1.0" encoding="utf-8"?>
                  <iati-activities version="1.03" generated-datetime="2015-07-07T16:49:09+00:00">
@@ -52,6 +61,23 @@ nodes<- getNodeSet(doc, "//iati-activity")
 #Compare
 xpathSApply(doc, "//budget/value", xmlValue)
 xpathSApply(doc, "//participating-org[@role='Funding']", xmlValue)
+
+# length of element name
+xpathSApply(doc, "//*[string-length(name()) > 6]")
+
+# The descendant axis contains the descendants of the context node;
+# a descendant is a child or a child of a child and so on; thus the descendant axis never 
+# contains attribute or namespace nodes
+# Select all descendants of document root and therefore all elements
+
+xpathSApply(doc, "/descendant::*")
+xpathSApply(doc, "//iati-activity/descendant::*")
+
+# parent node of present context
+xpathSApply(doc, "//budget/parent::*")
+
+# AND operator
+xpathSApply(doc, "//reporting-org | //participating-org")
 
 sapply(nodes, function(x) xpathSApply(x, "./budget/value", xmlValue))
 sapply(nodes, function(x) xpathSApply(x, "./participating-org[@role='Funding']", xmlValue))

@@ -3,3 +3,5 @@
 .RData
 .gitignore
 data
+R-network-data
+.DS_Store

@@ -1,3 +1,8 @@
+###########################################################
+### Creates a complex plot with three columns of text
+### Saves as a png externally.
+###########################################################
+
 P.three_column_list_of_text <- 
     function (filename = "three_column_list_of_text.png", seed=18) 
     {

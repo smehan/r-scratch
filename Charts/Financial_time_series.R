@@ -8,8 +8,9 @@ library(xts)
 library(dygraphs)
 
 # Get Apple and Google stock data from Yahoo Finance
-appl_url <- "http://real-chart.finance.yahoo.com/table.csv?s=AAPL"
-goog_url <- "http://real-chart.finance.yahoo.com/table.csv?s=GOOG"
+# Note that the params on the url are to control from and to datewise
+appl_url <- "http://real-chart.finance.yahoo.com/table.csv?s=AAPL&a=07&b=24&c=2010&d=07&e=24&f=2015"
+goog_url <- "http://real-chart.finance.yahoo.com/table.csv?s=GOOG&a=07&b=24&c=2010&d=07&e=24&f=2015&g"
 
 yahoo.read <- function(url){
     dat <- read.table(url,header=TRUE,sep=",")

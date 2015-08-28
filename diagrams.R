@@ -106,3 +106,20 @@ sequenceDiagram;
     ticket seller->>customer:  sorry;
   end
 ")
+
+# library(pipeR)
+# graph_1 <- create_graph() %>>%
+#     add_node("a") %>>% add_node("b") %>>% add_node("c") %>>%
+#     add_edges(from = c("a", "a", "b"),
+#               to =   c("c", "b", "c"))
+# graph_2 <- graph_1 %>>%
+#     add_node("d") %>>% add_edges(from = "d", to = "c")
+# graph_3 <- graph_2 %>>%
+#     add_node("e") %>>% add_edges(from = "e", to = "b")
+# # Create an empty graph series
+# series <- create_series(series_type = "sequential")
+# # Add graphs to the graph series
+# series <- graph_1 %>>% add_to_series(series)
+# series <- graph_2 %>>% add_to_series(series)
+# series <- graph_3 %>>% add_to_series(series)
+### display_graph(graph_#) is needed

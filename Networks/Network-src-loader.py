@@ -41,8 +41,10 @@ def recursive_child(parent):
             data.append(row)  # add previous complete row to output
             row = []  # reset row for new row.
 
+# Uses a download of the data table page from github project 
+# which I then use to extract all of the cells.
 data = [['id', 'from', 'to', 'weight', 'type']]
-with open('./src.txt', mode='rt') as f:
+with open('./data/Dataset1-Media-Exampes-EDGES.xml', mode='rt') as f:
     tree = xml.etree.ElementTree.parse(f)
 for child in tree.iterfind('tbody/'):
     recursive_child(child)

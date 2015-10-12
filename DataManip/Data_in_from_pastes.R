@@ -20,6 +20,6 @@ read.table(cb_handle)
 # This reads in the contents but leaves cleanup to do if not really a table
 cb_handle <- pipe("pbpaste")
 data_in <- read.table(cb_handle)
-
+data_in <- read.table("clipboard")
 
 

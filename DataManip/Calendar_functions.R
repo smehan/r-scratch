@@ -85,3 +85,28 @@ temps <- within(temps, {
 #     Feels[80 <= TEMP & TEMP <= 100] <- "Hot"
 #     Feels[is.na(Feels)]             <- "Cold"
 # })
+
+###########################################################
+### Plotting
+# Here is the example data with monthplot
+fit <- stl(log(co2), s.window = 20, t.window = 20)
+plot(fit)
+op <- par(mfrow = c(2,2))
+monthplot(co2, ylab = "data", cex.axis = 0.8)
+monthplot(fit, choice = "seasonal", cex.axis = 0.8)
+monthplot(fit, choice = "trend", cex.axis = 0.8)
+monthplot(fit, choice = "remainder", type = "h", cex.axis = 0.8)
+par(op)
+
+# some attempt
+plot(temps)
+op <- par(mfrow = c(2,2))
+monthplot(temps$temp, ylab = "Temp (F)", cex.axis = 0.8)
+monthplot(temps$temp, choice = "seasonal", cex.axis = 0.8)
+par(op)
+
+# TODO: build at least the co2 if not temps up in ggplot or other timeseries
+# would be nice to have faceting worked out
+
+
+

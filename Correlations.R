@@ -4,6 +4,7 @@
 ###########################################################
 
 library(ggplot2)
+library(corrplot)
 
 x <- as.matrix(read.table(text = "AUS   AUT   CAN   CHE   DEU  EU15   FRA   GBR   ITA   JPN   USA
                           AUS  1.000 0.058 0.476 0.313 0.111 0.277 0.184 0.296 0.202 0.192 0.267

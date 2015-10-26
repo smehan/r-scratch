@@ -129,7 +129,7 @@ invlogit(income1$coefficients)
 # now back on normal P scale
 
 # Poisson regression
-# models count data, number of childre, accidents, errors, etc.
+# models count data, number of children, accidents, errors, etc.
 
 # make a plot of number of children
 ggplot(acs) +

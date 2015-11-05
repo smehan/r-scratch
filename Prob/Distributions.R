@@ -29,4 +29,29 @@ x <- seq(0,100,by=1)
 y <- dbinom(x,100,0.6)
 plot(x,y)
 
-# Poisson distribution
+# Poisson distribution probability distribution of independent event occurrences 
+# in an interval. If λ is the mean occurrence per interval, then the probability 
+# of having x occurrences within a given interval is
+#  P(x) = λ^xe^(-λ) / x!
+
+# probability of seeing 12 occurances in an event when mean of event is 21
+dpois(12,21) #0.016
+
+# If there are twelve cars crossing a bridge per minute on average, 
+#find the probability of having seventeen or more cars crossing the bridge in a particular minute.
+# The probability of having sixteen or less cars crossing the bridge in a particular 
+# minute is given by the function ppois.
+
+ppois(16, lambda=12)   # lower tail 
+# 0.89871
+
+# Hence the probability of having seventeen or more cars crossing the bridge 
+# in a minute is in the upper tail of the probability density function.
+
+ppois(16, lambda=12, lower=FALSE)   # upper tail 
+# 0.10129 which is the probability sought.
+
+# plot the discrete probability distribution for this particular poission data
+ggplot(transform(data.frame(x=c(0:22)), y=dpois(x, 12)), aes(x, y)) + 
+    geom_bar(stat="identity")
+

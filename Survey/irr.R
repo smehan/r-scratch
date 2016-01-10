@@ -58,3 +58,20 @@ icc(ex1data, model='t', type='consistency', unit='average')
 # subsequent analyses is not substantially reduced. Empathy ratings were therefore 
 # deemed to be suitable for use in the hypothesis tests of the present study.
 
+# example 2 data. Two doctors measuring three vars for all subjects.
+# fully crossed. orindal measurements.
+
+subjects <- c("J. Papworth", "V. Belinooji", "V. Snivella", "C. Christopher", "A. Giles",
+              "M. Bauve", "N. James", "V. Patel", "M. Kaweney", "A. Head")
+ex2data <- data.frame("patients" = subjects,
+                      "analCanalLength_dr1" = c(24,27,34,30,34,22,28,30,25,32),
+                      "analCanalLength_dr2" = c(24,28,39,36,33,24,32,27,23,32),
+                      "asLength_dr1" = c(20,19,25,24,28,14,25,25,25,23),
+                      "asLength_dr2" = c(21,20,28,27,27,17,27,23,19,25),
+                      "subSpace_dr1" = c(4,8,9,6,6,8,3,5,2,6),
+                      "subSpace_dr2" = c(3,8,11,9,6,7,5,4,4,7))
+
+# make an IRR for each variable for all raters
+icc(ex2data[,c(2,3)],model='t', type='consistency', unit='average')
+icc(ex2data[,c(4,5)],model='t', type='consistency', unit='average')
+icc(ex2data[,c(6,7)],model='t', type='consistency', unit='average')
